@@ -242,7 +242,12 @@
     position: relative;
     overflow: hidden;
   }
-  .image-box .img-placeholder svg { width: 50%; opacity: .35; }
+  .image-box .img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
   .image-box h5 {
     margin: 8px 0 4px;
     font-size: 1rem;
@@ -584,17 +589,12 @@
 
       <div class="image-box">
         <div class="img-placeholder" id="img-intro">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="20" width="80" height="60" rx="8" stroke="#475569" stroke-width="2" fill="#fff"/>
-            <line x1="20" y1="35" x2="60" y2="35" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
-            <line x1="20" y1="45" x2="75" y2="45" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
-            <line x1="20" y1="55" x2="65" y2="55" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="78" cy="65" r="8" fill="#1d4ed8"/>
-          </svg>
+          <!-- Imagem substituída conforme solicitado -->
+          <img src="map_ptg.png" alt="Mapa conceitual da colocação pronominal - três posições">
         </div>
         <h5>Esquema das 3 posições</h5>
-        <p>Espaço reservado para uma imagem ilustrativa mostrando as três posições do pronome em relação ao verbo.</p>
-        <div class="hint">💡 Substitua o espaço acima por um diagrama com: <b>pronome + verbo</b> (próclise), <b>verbo + pronome</b> (ênclise) e <b>ver + pronome + ão</b> (mesóclise).</div>
+        <p>Mapa conceitual mostrando as três posições do pronome em relação ao verbo.</p>
+        <div class="hint">📌 Imagem <code>map_ptg.png</code> incluída no lugar do placeholder anterior.</div>
       </div>
     </div>
   </section>
