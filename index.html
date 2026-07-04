@@ -1,1 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Colocação Pronominal — Aprenda e Pratique</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --bg-soft: #1e293b;
+    --card: #ffffff;
+    --ink: #0f172a;
+    --muted: #475569;
+    --line: #e2e8f0;
+    --primary: #1d4ed8;
+    --primary-soft: #dbeafe;
+    --accent: #b45309;
+    --accent-soft: #fef3c7;
+    --proclise: #047857;
+    --proclise-soft: #d1fae5;
+    --enclise: #b45309;
+    --enclise-soft: #fef3c7;
+    --mesoclise: #6d28d9;
+    --mesoclise-soft: #ede9fe;
+    --danger: #b91c1c;
+    --danger-soft: #fee2e2;
+    --ok: #047857;
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(15, 23, 42, .08), 0 2px 6px rgba(15,23,42,.04);
+  }
 
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ====== HEADER ====== */
+  header.hero {
+    background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 60%, #b45309 100%);
+    color: #fff;
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,.15) 0, transparent 40%),
+                      radial-gradient(circle at 80% 70%, rgba(255,255,255,.1) 0, transparent 40%);
+    pointer-events: none;
+  }
+  header.hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  header.hero p {
+    margin: 0 auto;
+    max-width: 720px;
+    font-size: 1.05rem;
+    opacity: .95;
+  }
+  header.hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: .85rem;
+    margin-bottom: 14px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ====== LAYOUT ====== */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ====== NAV TABS ====== */
+  nav.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -32px auto 24px;
+    position: relative;
+    z-index: 5;
+  }
+  nav.tabs button {
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 12px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .95rem;
+    box-shadow: var(--shadow);
+    transition: all .2s ease;
+  }
+  nav.tabs button:hover { transform: translateY(-2px); }
+  nav.tabs button.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  /* ====== SECTIONS ====== */
+  section.panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    display: none;
+    animation: fadeIn .35s ease;
+  }
+  section.panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section.panel h2 {
+    margin: 0 0 6px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.panel h2 .dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .proclise-color { color: var(--proclise); }
+  .enclise-color  { color: var(--enclise); }
+  .mesoclise-color { color: var(--mesoclise); }
+  .proclise-bg { background: var(--proclise); }
+  .enclise-bg  { background: var(--enclise); }
+  .mesoclise-bg { background: var(--mesoclise); }
+
+  section.panel > p.lead {
+    color: var(--muted);
+    margin: 0 0 24px;
+    font-size: 1.05rem;
+  }
+
+  /* ====== GRID: EXPLICAÇÃO + IMAGEM ====== */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .content-grid { grid-template-columns: 1fr; }
+  }
+
+  .rule-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    background: #fff;
+    transition: box-shadow .2s;
+  }
+  .rule-card:hover { box-shadow: 0 4px 14px rgba(15,23,42,.06); }
+  .rule-card h4 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rule-card h4 .tag {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .rule-card .example {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    padding: 10px 14px;
+    margin-top: 8px;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .rule-card .example b { color: var(--primary); font-style: normal; }
+
+  /* Variant colors per section */
+  #proclise .rule-card .example { border-left-color: var(--proclise); }
+  #proclise .rule-card .example b { color: var(--proclise); }
+  #proclise .rule-card h4 .tag { background: var(--proclise-soft); color: var(--proclise); }
+
+  #enclise .rule-card .example { border-left-color: var(--enclise); }
+  #enclise .rule-card .example b { color: var(--enclise); }
+  #enclise .rule-card h4 .tag { background: var(--enclise-soft); color: var(--enclise); }
+
+  #mesoclise .rule-card .example { border-left-color: var(--mesoclise); }
+  #mesoclise .rule-card .example b { color: var(--mesoclise); }
+  #mesoclise .rule-card h4 .tag { background: var(--mesoclise-soft); color: var(--mesoclise); }
+
+  /* ====== IMAGEM COMPLEMENTAR ====== */
+  .image-box {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    position: sticky;
+    top: 20px;
+  }
+  .image-box .img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--muted);
+    font-size: .9rem;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .image-box .img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .image-box h5 {
+    margin: 8px 0 4px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .image-box p {
+    margin: 0;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+  .image-box .hint {
+    margin-top: 10px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: .82rem;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    text-align: left;
+  }
+
+  /* ====== CALL OUT / ATENÇÃO ====== */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 18px 0;
+    font-size: .95rem;
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ====== RESUMO PROIBIÇÕES ====== */
+  .forbidden-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .forbidden-card {
+    background: var(--danger-soft);
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .forbidden-card .title {
+    color: var(--danger);
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .forbidden-card .wrong { color: var(--danger); text-decoration: line-through; }
+  .forbidden-card .right { color: var(--ok); font-weight: 600; }
+
+  /* ====== BOTÃO EXERCÍCIOS ====== */
+  .exercise-cta {
+    text-align: center;
+    margin: 36px 0 12px;
+  }
+  .exercise-cta button {
+    background: linear-gradient(135deg, var(--primary) 0%, #6d28d9 100%);
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(29, 78, 216, .35);
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .exercise-cta button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(29, 78, 216, .45);
+  }
+  .exercise-cta button:active { transform: translateY(0); }
+
+  /* ====== MODAL QUIZ ====== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, .65);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0,0,0,.25);
+    animation: popIn .3s ease;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-header {
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, #6d28d9 100%);
+    color: #fff;
+    border-radius: 16px 16px 0 0;
+  }
+  .modal-header h3 { margin: 0; font-size: 1.3rem; }
+  .modal-header .close {
+    background: rgba(255,255,255,.2);
+    border: none;
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s;
+  }
+  .modal-header .close:hover { background: rgba(255,255,255,.35); }
+
+  .modal-body { padding: 28px; }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 22px;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #6d28d9);
+    transition: width .4s ease;
+    width: 0%;
+  }
+  .q-meta {
+    font-size: .85rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .q-meta .tag-type {
+    background: var(--primary-soft);
+    color: var(--primary);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .question {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .options { display: grid; gap: 10px; }
+  .option {
+    background: #f8fafc;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all .15s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .option:hover { border-color: var(--primary); background: #f1f5ff; }
+  .option .letter {
+    width: 28px; height: 28px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: .85rem;
+    flex-shrink: 0;
+  }
+  .option.correct {
+    background: var(--proclise-soft);
+    border-color: var(--proclise);
+  }
+  .option.correct .letter { background: var(--proclise); }
+  .option.wrong {
+    background: var(--danger-soft);
+    border-color: var(--danger);
+  }
+  .option.wrong .letter { background: var(--danger); }
+  .option.disabled { pointer-events: none; opacity: .85; }
+
+  .feedback {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: .95rem;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.ok {
+    background: var(--proclise-soft);
+    color: #065f46;
+    border-left: 4px solid var(--proclise);
+  }
+  .feedback.err {
+    background: var(--danger-soft);
+    color: #7f1d1d;
+    border-left: 4px solid var(--danger);
+  }
+
+  .modal-footer {
+    padding: 18px 28px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .modal-footer button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .95rem;
+    transition: all .2s;
+  }
+  .modal-footer button:hover:not(:disabled) { background: #1e40af; transform: translateY(-1px); }
+  .modal-footer button:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .modal-footer button.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .modal-footer button.secondary:hover { background: #f1f5f9; }
+
+  /* ====== RESULT SCREEN ====== */
+  .result-screen { text-align: center; padding: 30px 20px; }
+  .result-screen .score {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), #6d28d9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+  }
+  .result-screen .emoji { font-size: 2.5rem; }
+  .result-screen .msg { color: var(--muted); margin-bottom: 20px; font-size: 1.05rem; }
+  .result-screen .review-list {
+    text-align: left;
+    margin: 20px 0;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .result-screen .review-list .item {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: .9rem;
+  }
+  .result-screen .review-list .item:last-child { border-bottom: none; }
+  .result-screen .review-list .item .ic { font-weight: 700; }
+
+  footer.site {
+    text-align: center;
+    padding: 30px 20px 40px;
+    color: var(--muted);
+    font-size: .85rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="badge">Língua Portuguesa • Norma-Padrão</div>
+  <h1>Colocação Pronominal</h1>
+  <p>Aprenda as regras de próclise, ênclise e mesóclise — e teste seu conhecimento com exercícios interativos.</p>
+</header>
+
+<div class="container">
+  <nav class="tabs">
+    <button class="active" data-tab="intro">Introdução</button>
+    <button data-tab="proclise">Próclise</button>
+    <button data-tab="enclise">Ênclise</button>
+    <button data-tab="mesoclise">Mesóclise</button>
+    <button data-tab="resumo">Resumo</button>
+  </nav>
+
+  <!-- ====== INTRODUÇÃO ====== -->
+  <section class="panel active" id="intro">
+    <h2><span class="dot" style="background: var(--primary);"></span> O que é Colocação Pronominal?</h2>
+    <p class="lead">A colocação pronominal determina a posição dos pronomes pessoais oblíquos átonos em relação ao verbo. Existem três posições possíveis.</p>
+
+    <div class="content-grid">
+      <div>
+        <div class="rule-card">
+          <h4>Pronomes Oblíquos Átonos <span class="tag">Lista</span></h4>
+          <p style="margin:4px 0 0;">São os pronomes que estudamos nesta matéria: <b>me, te, se, o, a, lhe, nos, vos, os, as, lhes</b>. A posição que ocupam em relação ao verbo muda conforme as regras que veremos a seguir.</p>
+        </div>
+
+        <div class="rule-card">
+          <h4>As Três Posições <span class="tag">Visão Geral</span></h4>
+          <p style="margin:4px 0 0;">
+            <b class="proclise-color">Próclise</b> — pronome <i>antes</i> do verbo.<br>
+            <b class="enclise-color">Ênclise</b> — pronome <i>depois</i> do verbo.<br>
+            <b class="mesoclise-color">Mesóclise</b> — pronome <i>no meio</i> do verbo.
+          </p>
+        </div>
+
+        <div class="callout">
+          <strong>Dica de ouro:</strong> No português brasileiro falado, a próclise é muito comum, mas na norma-padrão escrita existem regras precisas que definem quando cada posição é obrigatória.
+        </div>
+      </div>
+
+      <div class="image-box">
+        <div class="img-placeholder" id="img-intro">
+          <!-- Imagem substituída conforme solicitado -->
+          <img src="map_ptg.png" alt="Mapa conceitual da colocação pronominal - três posições">
+        </div>
+        <h5>Esquema das 3 posições</h5>
+        <p>Mapa conceitual mostrando as três posições do pronome em relação ao verbo.</p>
+        <div class="hint">📌 Imagem <code>map_ptg.png</code> incluída no lugar do placeholder anterior.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRÓCLISE ====== -->
+  <section class="panel" id="proclise">
+    <h2><span class="dot proclise-bg"></span> 1. Próclise — Pronome ANTES do verbo</h2>
+    <p class="lead">É a forma mais comum no português brasileiro e é obrigatória sempre que houver palavras atrativas antes do verbo.</p>
+
+    <div class="content-grid">
+      <div>
+        <div class="rule-card">
+          <h4>Palavras de sentido negativo <span class="tag">Obrigatório</span></h4>
+          <p style="margin:4px 0 0;">Não, nunca, jamais, ninguém, nada, nem.</p>
+          <div class="example"><b>Não</b> me disseram a verdade. / <b>Nunca</b> o vi por aqui.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Advérbios (sem vírgula) <span class="tag">Atração</span></h4>
+          <p style="margin:4px 0 0;">Hoje, sempre, talvez, aqui, bem, muito.</p>
+          <div class="example"><b>Sempre</b> se dedicou aos estudos. <br><small>(Mas: "Sempre, dedicou-se aos estudos." — com vírgula, usa-se ênclise.)</small></div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Pronomes Relativos <span class="tag">Atração</span></h4>
+          <p style="margin:4px 0 0;">Que, quem, cujo, onde, o qual.</p>
+          <div class="example">Identificamos o homem <b>que</b> o auxiliou.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Pronomes Indefinidos <span class="tag">Atração</span></h4>
+          <p style="margin:4px 0 0;">Tudo, alguém, todos, poucos, outrem.</p>
+          <div class="example"><b>Alguém</b> me ligou ontem à noite.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Pronomes Demonstrativos <span class="tag">Atração</span></h4>
+          <p style="margin:4px 0 0;">Isto, isso, aquilo, este, esse, aquele.</p>
+          <div class="example"><b>Isso</b> nos conforta bastante.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Conjunções Subordinativas <span class="tag">Atração</span></h4>
+          <p style="margin:4px 0 0;">Que, quando, se, porque, embora, conforme.</p>
+          <div class="example">Quero <b>que</b> se sinta à vontade. / <b>Embora</b> se esforçasse, não conseguiu.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Orações interrogativas, exclamativas ou optativas <span class="tag">Atração</span></h4>
+          <div class="example">Quem te disse isso? (Interrogativa) / Deus o guarde! (Optativa)</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Preposição "Em" + Gerúndio <span class="tag">Construção fixa</span></h4>
+          <div class="example"><b>Em</b> se <b>tratando</b> de segurança, ele é especialista.</div>
+        </div>
+      </div>
+
+      <div class="image-box">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="40" width="30" height="22" rx="4" fill="#047857"/>
+            <rect x="50" y="40" width="38" height="22" rx="4" fill="#d1fae5" stroke="#047857" stroke-width="2"/>
+            <text x="30" y="55" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">pron.</text>
+            <text x="69" y="55" font-size="9" fill="#047857" text-anchor="middle" font-weight="bold">verbo</text>
+            <text x="50" y="80" font-size="7" fill="#475569" text-anchor="middle">PRÓCLISE</text>
+          </svg>
+        </div>
+        <h5>Próclise: pronome → verbo</h5>
+        <p>Use este espaço para um esquema visual com os principais "atraentes" do pronome para a esquerda.</p>
+        <div class="hint">🎯 Boas imagens: lousa com exemplos reais, diagrama de setas indicando atração, ou mapa mental dos atratores.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ÊNCLISE ====== -->
+  <section class="panel" id="enclise">
+    <h2><span class="dot enclise-bg"></span> 2. Ênclise — Pronome DEPOIS do verbo</h2>
+    <p class="lead">É a posição básica do pronome na norma-padrão. Deve ser usada sempre que a próclise não for obrigatória.</p>
+
+    <div class="content-grid">
+      <div>
+        <div class="rule-card">
+          <h4>Início de frases <span class="tag">Obrigatório</span></h4>
+          <p style="margin:4px 0 0;">Nunca se inicia uma frase com pronome oblíquo átono na norma culta.</p>
+          <div class="example"><b>Entregou-me</b> os relatórios logo cedo. <br><small>(Incorreto: <s>Me entregou</s> os relatórios.)</small></div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Verbo no Imperativo Afirmativo <span class="tag">Obrigatório</span></h4>
+          <div class="example">Quando eu chamar, <b>silenciem-se</b> todos. / Por favor, <b>avise-me</b> quando chegar.</div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Verbo no Gerúndio (sem "Em") <span class="tag">Obrigatório</span></h4>
+          <div class="example">O diretor entrou na sala, <b>cumprimentando-nos</b> cordialmente. <br><small>(Mas: "Em se tratando..." → próclise.)</small></div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Verbo no Infinitivo Impessoal <span class="tag">Obrigatório</span></h4>
+          <div class="example">Meu objetivo era <b>explicar-lhes</b> a situação.</div>
+        </div>
+
+        <div class="callout">
+          <strong>Atenção:</strong> A ênclise é a posição "neutra" da norma-padrão. Se não há palavra atrativa antes do verbo, e o verbo não está no futuro, use ênclise.
+        </div>
+      </div>
+
+      <div class="image-box">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="40" width="38" height="22" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+            <rect x="58" y="40" width="30" height="22" rx="4" fill="#b45309"/>
+            <text x="34" y="55" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">verbo</text>
+            <text x="73" y="55" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">pron.</text>
+            <text x="50" y="80" font-size="7" fill="#475569" text-anchor="middle">ÊNCLISE</text>
+          </svg>
+        </div>
+        <h5>Ênclise: verbo → pronome</h5>
+        <p>Espaço para uma imagem mostrando frases no imperativo afirmativo, gerúndio e infinitivo impessoal.</p>
+        <div class="hint">🎨 Sugestão: charges demonstrando o erro comum "Me entreguem o trabalho" → "Entreguem-me o trabalho".</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MESÓCLISE ====== -->
+  <section class="panel" id="mesoclise">
+    <h2><span class="dot mesoclise-bg"></span> 3. Mesóclise — Pronome no MEIO do verbo</h2>
+    <p class="lead">É de uso restrito e formal. Ocorre exclusivamente com verbos no <b>Futuro do Presente</b> ou <b>Futuro do Pretérito</b>, desde que não haja palavra atrativa que force a próclise.</p>
+
+    <div class="content-grid">
+      <div>
+        <div class="rule-card">
+          <h4>Com o Futuro do Presente <span class="tag">Obrigatório</span></h4>
+          <p style="margin:4px 0 0;">O pronome é inserido entre a raiz do verbo e a terminação do futuro.</p>
+          <div class="example"><b>Dar-me-ei</b> por satisfeito se terminarmos hoje. <small>(Verbo: Darei)</small><br><b>Ajudar-te-ão</b> na nova tarefa. <small>(Verbo: Ajudarão)</small></div>
+        </div>
+
+        <div class="rule-card">
+          <h4>Com o Futuro do Pretérito <span class="tag">Obrigatório</span></h4>
+          <div class="example"><b>Orgulhar-me-ia</b> muito dessa conquista. <small>(Verbo: Orgulharia)</small><br><b>Fazer-nos-iam</b> um grande favor. <small>(Verbo: Fariam)</small></div>
+        </div>
+
+        <div class="callout" style="background: var(--mesoclise-soft); border-left-color: var(--mesoclise);">
+          <strong style="color: var(--mesoclise);">⚠️ Regra de prioridade:</strong> Se houver uma palavra atrativa antes do verbo no futuro, a <b>próclise anula a mesóclise</b>.
+          <div style="margin-top:8px;">
+            <div>Sem atração: <b>Dir-me-ás</b> a verdade. <small>(Mesóclise correta)</small></div>
+            <div>Com atração: <b>Não me dirás</b> a verdade. <small>(Próclise obrigatória)</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-box">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="40" width="22" height="22" rx="4" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+            <rect x="40" y="40" width="22" height="22" rx="4" fill="#6d28d9"/>
+            <rect x="65" y="40" width="22" height="22" rx="4" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+            <text x="26" y="55" font-size="6" fill="#6d28d9" text-anchor="middle" font-weight="bold">raiz</text>
+            <text x="51" y="55" font-size="6" fill="#fff" text-anchor="middle" font-weight="bold">pron.</text>
+            <text x="76" y="55" font-size="6" fill="#6d28d9" text-anchor="middle" font-weight="bold">fut.</text>
+            <text x="50" y="80" font-size="7" fill="#475569" text-anchor="middle">MESÓCLISE</text>
+          </svg>
+        </div>
+        <h5>Mesóclise: raiz + pronome + terminação</h5>
+        <p>Espaço para uma imagem mostrando a estrutura interna do verbo no futuro (raiz + pronome + desinência).</p>
+        <div class="hint">📚 Boas ideias: tabela com verbos conjugados no futuro destacando onde o pronome entra, ou um "quebra-cabeça" verbal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RESUMO ====== -->
+  <section class="panel" id="resumo">
+    <h2><span class="dot" style="background: var(--danger);"></span> Resumo Rápido das Proibições</h2>
+    <p class="lead">Para não errar na escrita formal, guarde estas três regras de ouro:</p>
+
+    <div class="forbidden-grid">
+      <div class="forbidden-card">
+        <div class="title">❌ Nunca inicie frase com pronome oblíquo</div>
+        <div>Errado: <span class="wrong">Me parece bom</span></div>
+        <div>Certo: <span class="right">Parece-me bom</span></div>
+      </div>
+
+      <div class="forbidden-card">
+        <div class="title">❌ Nunca use ênclise após verbo no futuro</div>
+        <div>Errado: <span class="wrong">Chamarei-te</span></div>
+        <div>Certo: <span class="right">Chamar-te-ei</span> ou <span class="right">Não te chamarei</span></div>
+      </div>
+
+      <div class="forbidden-card">
+        <div class="title">❌ Nunca use ênclise após particípio</div>
+        <div>Errado: <span class="wrong">Tinha entregado-me</span></div>
+        <div>Certo: <span class="right">Tinha-me entregado</span> ou <span class="right">Me tinha entregado</span></div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 24px;">
+      <strong>Fluxograma mental:</strong> Identifique se há palavra atrativa → se sim, <b>próclise</b>; se não há, verifique o tempo verbal → se for futuro (do presente ou do pretérito), <b>mesóclise</b>; caso contrário, <b>ênclise</b>.
+    </div>
+
+    <div class="exercise-cta">
+      <button id="openQuiz">
+        🎯 Testar meus conhecimentos
+        <span style="font-size: 1.3rem;">→</span>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- Botão flutuante de exercícios em todas as seções -->
+<div style="text-align: center; padding: 20px;">
+  <button id="openQuizFloat" style="background: linear-gradient(135deg, var(--primary), #6d28d9); color:#fff; border:none; padding:14px 32px; border-radius:999px; cursor:pointer; font-weight:700; font-size:1rem; box-shadow:0 8px 20px rgba(29,78,216,.3);">
+    📝 Abrir Exercícios
+  </button>
+</div>
+
+<footer class="site">
+  <p>📚 Estude, pratique e revise. A norma-padrão se constrói com constância!</p>
+</footer>
+
+<!-- ============ MODAL QUIZ ============ -->
+<div class="modal-overlay" id="quizModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>📝 Exercícios de Colocação Pronominal</h3>
+      <button class="close" id="closeQuiz">✕</button>
+    </div>
+    <div class="modal-body" id="quizBody">
+      <!-- conteúdo dinâmico -->
+    </div>
+    <div class="modal-footer" id="quizFooter">
+      <button class="secondary" id="restartQuiz">↻ Recomeçar</button>
+      <button id="nextBtn" disabled>Próxima →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ NAVEGAÇÃO POR TABS ============ */
+const tabButtons = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    tabButtons.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ============ BANCO DE EXERCÍCIOS ============ */
+const questions = [
+  {
+    type: "Próclise",
+    q: "Assinale a frase em que a colocação pronominal está CORRETA:",
+    options: [
+      "Me entregaram os documentos ontem.",
+      "Não me entregaram os documentos ontem.",
+      "Entregaram me os documentos ontem.",
+      "Ontem, me entregaram os documentos."
+    ],
+    correct: 1,
+    explanation: "Há palavra negativa ('Não') atraindo o pronome para antes do verbo → próclise obrigatória: 'Não me entregaram'."
+  },
+  {
+    type: "Ênclise",
+    q: "Complete corretamente: '________ o convite o mais rápido possível.' (no início da frase)",
+    options: [
+      "Me envie",
+      "Envie-me",
+      "Enviar-me-ei",
+      "Me enviará"
+    ],
+    correct: 1,
+    explanation: "No início de frase, é obrigatória a ênclise: 'Envie-me'. Nunca se inicia frase com pronome oblíquo átono."
+  },
+  {
+    type: "Mesóclise",
+    q: "Na frase 'Eu ___________ a verdade se você perguntar.' (verbo: dirás), a forma correta é:",
+    options: [
+      "dir-te-ei",
+      "te direi",
+      "direi-te",
+      "dirá-te"
+    ],
+    correct: 0,
+    explanation: "Verbo no Futuro do Presente (direi) sem palavra atrativa → mesóclise: 'dir-te-ei'."
+  },
+  {
+    type: "Próclise",
+    q: "Em qual frase a próclise é OBRIGATÓRIA devido a pronome relativo?",
+    options: [
+      "O aluno estudou muito.",
+      "O aluno que se esforçou foi aprovado.",
+      "O aluno esforçou-se muito.",
+      "O aluno, esforçou-se muito."
+    ],
+    correct: 1,
+    explanation: "O pronome relativo 'que' atrai o pronome para antes do verbo: 'que se esforçou'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Qual alternativa apresenta mesóclise CORRETA?",
+    options: [
+      "Chamarei-te amanhã cedo.",
+      "Não chamar-te-ei amanhã cedo.",
+      "Chamar-te-ei amanhã cedo.",
+      "Te chamarei amanhã cedo."
+    ],
+    correct: 2,
+    explanation: "Com Futuro do Presente sem palavra atrativa, usa-se mesóclise: 'Chamar-te-ei'. 'Chamarei-te' é erro grave."
+  },
+  {
+    type: "Próclise",
+    q: "Em 'Em _________ de segurança, ele é especialista.', a lacuna deve ser preenchida com:",
+    options: [
+      "se tratar",
+      "tratar-se",
+      "tratando-se",
+      "se tratando"
+    ],
+    correct: 0,
+    explanation: "A construção 'Em + se + verbo no gerúndio' é caso fixo de próclise: 'Em se tratando de segurança...'."
+  },
+  {
+    type: "Ênclise",
+    q: "Assinale a frase CORRETA com verbo no imperativo afirmativo:",
+    options: [
+      "Por favor, me avise quando chegar.",
+      "Por favor, avise-me quando chegar.",
+      "Por favor, avisará-me quando chegar.",
+      "Por favor, se avise quando chegar."
+    ],
+    correct: 1,
+    explanation: "No imperativo afirmativo, a ênclise é obrigatória: 'avise-me'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Complete: 'Se eu tivesse tempo, ___________ a sua casa.' (verbo: visitaria)",
+    options: [
+      "visitaria-te",
+      "te visitaria",
+      "visitar-te-ia",
+      "visitar-me-ia"
+    ],
+    correct: 2,
+    explanation: "Futuro do Pretérito sem palavra atrativa → mesóclise: 'visitar-te-ia'."
+  },
+  {
+    type: "Próclise",
+    q: "Na frase 'Isso _________ bastante conforto.', a lacuna deve ser preenchida com:",
+    options: [
+      "nos traz",
+      "traz-nos",
+      "traria-nos",
+      "nos trará"
+    ],
+    correct: 0,
+    explanation: "O pronome demonstrativo 'Isso' atrai o pronome: 'Isso nos traz'."
+  },
+  {
+    type: "Próclise",
+    q: "Qual frase está CORRETA quanto à colocação pronominal?",
+    options: [
+      "Nunca encontrei-o na escola.",
+      "Nunca o encontrei na escola.",
+      "Nunca encontrou-o na escola.",
+      "Nunca, encontrei-o na escola."
+    ],
+    correct: 1,
+    explanation: "'Nunca' é palavra negativa, atrai o pronome para próclise: 'Nunca o encontrei'."
+  },
+  {
+    type: "Ênclise",
+    q: "Complete: 'O diretor entrou na sala, ___________ cordialmente.' (gerúndio)",
+    options: [
+      "se cumprimentando",
+      "nos cumprimentando",
+      "cumprimentando-nos",
+      "cumprimentou-nos"
+    ],
+    correct: 2,
+    explanation: "Verbo no gerúndio (sem 'em') exige ênclise: 'cumprimentando-nos'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Qual é a forma correta para 'Eu te ajudaria na tarefa' (substituindo por mesóclise, quando possível)?",
+    options: [
+      "Ajudar-te-ei",
+      "Ajudar-te-ia",
+      "Ajudaria-te",
+      "Te ajudaria"
+    ],
+    correct: 1,
+    explanation: "Sem palavra atrativa e com Futuro do Pretérito (ajudaria), a mesóclise é 'Ajudar-te-ia'."
+  },
+  {
+    type: "Próclise",
+    q: "Em 'Alguém _________ ontem à noite.', a lacuna deve ser preenchida com:",
+    options: [
+      "ligou-me",
+      "me ligou",
+      "ligar-me-á",
+      "se ligou"
+    ],
+    correct: 1,
+    explanation: "O pronome indefinido 'Alguém' atrai o pronome: 'Alguém me ligou'."
+  },
+  {
+    type: "Próclise",
+    q: "Em qual das frases a próclise é exigida pela conjunção subordinativa?",
+    options: [
+      "Quero que se sinta à vontade.",
+      "Quero que sinta-se à vontade.",
+      "Quero que, sinta-se à vontade.",
+      "Quero que o sentirá à vontade."
+    ],
+    correct: 0,
+    explanation: "A conjunção 'que' atrai o pronome: 'que se sinta à vontade'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Complete: 'Eles ___________ um grande favor se pudessem.' (verbo: fariam)",
+    options: [
+      "fariam-nos",
+      "nos fariam",
+      "fazer-nos-iam",
+      "fariam-me"
+    ],
+    correct: 2,
+    explanation: "Futuro do Pretérito sem atrativo → mesóclise: 'Fazer-nos-iam'."
+  },
+  {
+    type: "Ênclise",
+    q: "Complete: 'Meu objetivo era ___________ a situação.' (infinitivo impessoal)",
+    options: [
+      "se explicar",
+      "lhes explicar",
+      "explicar-lhes",
+      "explicar-lhe-ia"
+    ],
+    correct: 2,
+    explanation: "Infinitivo impessoal exige ênclise: 'explicar-lhes'."
+  },
+  {
+    type: "Próclise",
+    q: "Em 'Embora ___________ muito, ela não foi promovida.', a lacuna correta é:",
+    options: [
+      "esforçou-se",
+      "se esforçasse",
+      "esforçar-se-ia",
+      "se esforçou"
+    ],
+    correct: 1,
+    explanation: "A conjunção subordinativa 'Embora' atrai o pronome: 'Embora se esforçasse'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Qual frase contém um ERRO de colocação pronominal?",
+    options: [
+      "Dar-me-ei por satisfeito.",
+      "Ajudar-te-ão na tarefa.",
+      "Orgulhar-me-ia dessa conquista.",
+      "Chamarei-te amanhã cedo."
+    ],
+    correct: 3,
+    explanation: "'Chamarei-te' está errado. Com futuro do presente, deve-se usar mesóclise: 'Chamar-te-ei'."
+  },
+  {
+    type: "Próclise",
+    q: "Qual é a forma correta da frase interrogativa?",
+    options: [
+      "Quem te disse isso?",
+      "Quem disse-te isso?",
+      "Quem dir-te-á isso?",
+      "Quem, te disse isso?"
+    ],
+    correct: 0,
+    explanation: "Em orações interrogativas, a próclise é obrigatória: 'Quem te disse isso?'."
+  },
+  {
+    type: "Próclise",
+    q: "Assinale a alternativa CORRETA:",
+    options: [
+      "Sempre, encontrou-me no café.",
+      "Sempre se encontrou no café.",
+      "Sempre, se encontrou no café.",
+      "Sempre encontrou-se no café."
+    ],
+    correct: 3,
+    explanation: "Sem vírgula após 'Sempre', o advérbio atrai o pronome: 'Sempre se encontrou'. Mas com vírgula: 'Sempre, encontrou-se'. A questão pede a correta, e a forma 'Sempre se encontrou' também estaria certa. Aqui, sem vírgula, a próclise é a correta."
+  },
+  {
+    type: "Mesóclise",
+    q: "Complete: 'Não ___________ a verdade sobre o assunto.' (verbo: dirão)",
+    options: [
+      "dirão-no",
+      "dir-no-ão",
+      "no dirão",
+      "lhe dirão"
+    ],
+    correct: 3,
+    explanation: "Com palavra negativa 'Não', a próclise anula a mesóclise. Como 'dirão' exige um pronome adequado, usamos 'lhe dirão' (próclise). A mesóclise 'dir-no-ão' só ocorreria sem palavra atrativa."
+  },
+  {
+    type: "Ênclise",
+    q: "Em qual frase a ênclise é OBRIGATÓRIA por iniciar a oração?",
+    options: [
+      "Hoje, levantei-me cedo.",
+      "Hoje me levantei cedo.",
+      "Levantei-me cedo hoje.",
+      "Me levantei cedo hoje."
+    ],
+    correct: 2,
+    explanation: "Sem palavra atrativa no início, a ênclise é obrigatória: 'Levantei-me cedo hoje'."
+  },
+  {
+    type: "Próclise",
+    q: "Complete: 'O garoto a quem _________ o presente sorriu.'",
+    options: [
+      "dei-lhe",
+      "dei-me",
+      "lhe dei",
+      "te dei"
+    ],
+    correct: 2,
+    explanation: "O pronome relativo 'a quem' atrai o pronome: 'a quem lhe dei'."
+  },
+  {
+    type: "Mesóclise",
+    q: "Complete: 'Se você pedisse, ___________ tudo.' (verbo: daria)",
+    options: [
+      "daria-te",
+      "te daria",
+      "dar-te-ia",
+      "dar-se-ia"
+    ],
+    correct: 2,
+    explanation: "Futuro do Pretérito sem palavra atrativa → mesóclise: 'dar-te-ia'."
+  },
+  {
+    type: "Geral",
+    q: "Assinale a frase em que TODOS os pronomes estão bem colocados:",
+    options: [
+      "Me disseram que ele partirá-me amanhã.",
+      "Disseram-me que ele me partirá amanhã.",
+      "Disseram-me que ele partir-se-á amanhã.",
+      "Me disseram que ele se partirá amanhã."
+    ],
+    correct: 2,
+    explanation: "'Disseram-me' (ênclise no início), 'partir-se-á' (mesóclise no futuro sem atrativo). Forma correta."
+  }
+];
+
+/* ============ ESTADO DO QUIZ ============ */
+let currentIdx = 0;
+let score = 0;
+let answered = false;
+let userAnswers = [];
+
+const quizBody = document.getElementById('quizBody');
+const quizFooter = document.getElementById('quizFooter');
+const nextBtn = document.getElementById('nextBtn');
+const restartBtn = document.getElementById('restartQuiz');
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[currentIdx];
+  const progress = ((currentIdx) / questions.length) * 100;
+
+  quizBody.innerHTML = `
+    <div class="progress-bar"><div class="fill" style="width:${progress}%"></div></div>
+    <div class="q-meta">
+      <span>Pergunta ${currentIdx + 1} de ${questions.length}</span>
+      <span class="tag-type">${q.type}</span>
+    </div>
+    <div class="question">${q.q}</div>
+    <div class="options" id="optionsList">
+      ${q.options.map((opt, i) => `
+        <div class="option" data-idx="${i}">
+          <div class="letter">${String.fromCharCode(65 + i)}</div>
+          <span>${opt}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="feedback" id="feedback"></div>
+  `;
+
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', handleAnswer);
+  });
+
+  nextBtn.disabled = true;
+  nextBtn.textContent = currentIdx === questions.length - 1 ? 'Ver resultado 🎯' : 'Próxima →';
+}
+
+function handleAnswer(e) {
+  if (answered) return;
+  answered = true;
+  const selected = parseInt(e.currentTarget.dataset.idx);
+  const q = questions[currentIdx];
+  const isCorrect = selected === q.correct;
+  if (isCorrect) score++;
+  userAnswers.push({ q: q.q, selected, correct: q.correct, isCorrect, explanation: q.explanation });
+
+  document.querySelectorAll('.option').forEach((opt, i) => {
+    opt.classList.add('disabled');
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === selected && !isCorrect) opt.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'err');
+  fb.innerHTML = `<strong>${isCorrect ? '✅ Correto!' : '❌ Não foi dessa vez.'}</strong> ${q.explanation}`;
+
+  nextBtn.disabled = false;
+}
+
+nextBtn.addEventListener('click', () => {
+  if (!answered) return;
+  if (currentIdx < questions.length - 1) {
+    currentIdx++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  const pct = Math.round((score / questions.length) * 100);
+  let emoji = '😐', msg = '';
+  if (pct === 100) { emoji = '🏆'; msg = 'Perfeito! Você dominou a colocação pronominal!'; }
+  else if (pct >= 80) { emoji = '🎉'; msg = 'Excelente! Você está muito bem preparado(a).'; }
+  else if (pct >= 60) { emoji = '👍'; msg = 'Bom trabalho! Revise os pontos que errou.'; }
+  else if (pct >= 40) { emoji = '📚'; msg = 'Continue estudando! A prática leva à perfeição.'; }
+  else { emoji = '💪'; msg = 'Não desanime! Releia a teoria e tente novamente.'; }
+
+  const reviewHtml = userAnswers.map((a, i) => `
+    <div class="item">
+      <span class="ic">${a.isCorrect ? '✅' : '❌'}</span>
+      <strong>P${i+1}:</strong> ${a.explanation}
+    </div>
+  `).join('');
+
+  quizBody.innerHTML = `
+    <div class="result-screen">
+      <div class="emoji">${emoji}</div>
+      <div class="score">${score} / ${questions.length}</div>
+      <div style="font-size:1.3rem; font-weight:700; color: var(--ink);">${pct}% de acerto</div>
+      <div class="msg">${msg}</div>
+      <div class="review-list">${reviewHtml}</div>
+    </div>
+  `;
+  nextBtn.style.display = 'none';
+  restartBtn.textContent = '↻ Refazer exercícios';
+}
+
+restartBtn.addEventListener('click', () => {
+  currentIdx = 0;
+  score = 0;
+  userAnswers = [];
+  nextBtn.style.display = '';
+  restartBtn.textContent = '↻ Recomeçar';
+  renderQuestion();
+});
+
+/* ============ ABRIR / FECHAR MODAL ============ */
+const modal = document.getElementById('quizModal');
+function openQuiz() {
+  currentIdx = 0;
+  score = 0;
+  userAnswers = [];
+  nextBtn.style.display = '';
+  restartBtn.textContent = '↻ Recomeçar';
+  renderQuestion();
+  modal.classList.add('show');
+}
+function closeQuiz() {
+  modal.classList.remove('show');
+}
+document.getElementById('openQuiz').addEventListener('click', openQuiz);
+document.getElementById('openQuizFloat').addEventListener('click', openQuiz);
+document.getElementById('closeQuiz').addEventListener('click', closeQuiz);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeQuiz();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeQuiz();
+});
+</script>
+
+</body>
+</html>
